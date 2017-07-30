@@ -4,32 +4,28 @@ import yaml
 
 config = yaml.load(open("config.yaml", "r"))
 
-def remove_prefix(prefix, text):
-    if text.startswith(prefix):
-        return text[len(prefix):]
-    else:
-        return text
-
 
 def on_connect(client, userdata, flags, result):
-    client.subscribe("drinks_storage/scale_measurements/#")
+    client.subscribe("drinks_storage/scale_measurements")
 
 
 def on_message(client, userdata, message):
     try:
-        topic = remove_prefix("drinks_storage/scale_measurements/", message.topic)
-        tare = config[topic]["tare"]
-        crate_weight = config[topic]["crate_weight"]
-        raw_value = int(message.payload)
-        output_value = round((raw_value - tare) / crate_weight)
-        client.publish("drinks_storage/crate_counts/" + topic, str(output_value))
+        msg_content = yaml.load(message.payload)
+
+        scale_config = config["scales"][msg_content["esp_id"]]
+        output_value = round(
+            (msg_content["scale_value"] - scale_config["tare"]) / scale_config["crate_weight"])
+
+        client.publish("drinks_storage/crate_counts/" +
+                       scale_config["scale_name"], str(output_value))
     except KeyError as e:
         print("unknown scale " + str(e))
-    
+
 
 client = mqtt.Client()
 client.on_connect = on_connect
 client.on_message = on_message
 
-client.connect("192.168.3.189")
+client.connect(config["mqtt_host"])
 client.loop_forever()
