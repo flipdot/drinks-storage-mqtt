@@ -1,7 +1,6 @@
 mqtt_host: localhost
 
 scales:
-  0x00F202D0:
-    scale_name: mate_1
+  0x00F202D0: # mate_1
     tare: 9024900
     crate_weight: -263600

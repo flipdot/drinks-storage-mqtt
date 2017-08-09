@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import paho.mqtt.client as mqtt
+import json
 import yaml
 
 config = yaml.load(open("config.yaml", "r"))
@@ -20,12 +21,13 @@ def on_message(client, userdata, message):
         output_value = round((msg_content["scale_value"]
                              - scale_config["tare"])
                              / scale_config["crate_weight"])
+        output_json = {}
+        output_json['esp_id'] = str(msg_content["esp_id"])
+        output_json['crates'] = str(output_value)
 
         client.subscribe(MQTT_TOPIC_RAW)
-        # TODO Spoof ID for each scale to be able to publish to a single topic?
-        client.publish("{}/{}".format(MQTT_TOPIC_CRATES,
-                                      scale_config["scale_name"]),
-                       str(output_value))
+        client.publish(MQTT_TOPIC_CRATES,
+                       json.dumps(output_json))
     except KeyError as e:
         print("unknown scale " + str(e))
 
