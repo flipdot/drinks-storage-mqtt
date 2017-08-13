@@ -5,4 +5,5 @@ scales:
     scale_name: mio_mate
     tare: 9024900 
     crate_weight: 12.81
+    tolerance: 0.5
     kilogram: -20800
