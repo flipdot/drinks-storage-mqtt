@@ -7,6 +7,7 @@ config = yaml.load(open("config.yaml", "r"))
 
 MQTT_TOPIC_RAW = "sensors/cellar/drinks_scale_measurements_raw"
 MQTT_TOPIC_CRATES = "sensors/cellar/drinks_crate_counts"
+MQTT_TOPIC_ERRORS = "errors"
 
 
 def on_connect(client, userdata, flags, result):
@@ -25,11 +26,14 @@ def on_message(client, userdata, message):
             "esp_id": str(msg_content["esp_id"]),
             "crates": str(output_value),
         }
-        client.publish(MQTT_TOPIC_CRATES,
-                       json.dumps(output_json))
-    except KeyError as e:
-        print("unknown scale " + str(e))
+        client.publish(MQTT_TOPIC_CRATES, json.dumps(output_json))
 
+    except KeyError as e:
+        error_json = {
+            "origin": "drinks-storage-mqtt",
+            "message": "unknown scale " + str(e),
+        }
+        client.publish(MQTT_TOPIC_ERRORS, json.dumps(error_json))
 
 client = mqtt.Client()
 client.on_connect = on_connect
