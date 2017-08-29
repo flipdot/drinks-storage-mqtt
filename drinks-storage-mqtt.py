@@ -1,13 +1,11 @@
 #!/usr/bin/env python3
 import json
-import requests
 
 import paho.mqtt.client as mqtt
 import yaml
 
 config = yaml.load(open("config.yaml", "r"))
 
-API_URL_TEMPLATE = "https://api.flipdot.org/sensors/beverage_supply/cellar/{}/crt/{}"
 MQTT_TOPIC_RAW = "sensors/cellar/drinks_scale_measurements_raw"
 MQTT_TOPIC_METRIC = "sensors/cellar/drinks_scale_measurements_metric"
 MQTT_TOPIC_CRATES = "sensors/cellar/drinks_crate_counts"
@@ -49,7 +47,6 @@ def on_message(client, userdata, message):
                 "crate_count": crates_int,
             }
             client.publish(MQTT_TOPIC_CRATES, json.dumps(output_json))
-            requests.get(API_URL_TEMPLATE.format(crates_int, scale_config["scale_name"]))
 
     except KeyError as key:
         error_json = {
