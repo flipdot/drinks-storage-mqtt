@@ -7,3 +7,9 @@ scales:
     crate_weight: 12.81
     tolerance: 0.5
     kilogram: -20800
+  0x00499A78:
+    scale_name: jever
+    tare: 9004050
+    crate_weight: 20.40
+    tolerance: 0.5
+    kilogram: -20800
