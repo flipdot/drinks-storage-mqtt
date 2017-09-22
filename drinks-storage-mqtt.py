@@ -37,7 +37,7 @@ def on_message(client, userdata, message):
         if diff_kg > scale_config["tolerance"]:
             error_json = {
                 "origin": "drinks-storage-mqtt",
-                "message": "{}: Measurement not in range, difference = {} kg"
+                "message": "{}: Measurement not in range, difference = {:.2} kg"
                            .format(scale_config["scale_name"], diff_kg)
             }
             client.publish(MQTT_TOPIC_ERRORS, json.dumps(error_json))
