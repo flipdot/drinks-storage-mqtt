@@ -1,0 +1,11 @@
+[Unit]
+Description=Drinks Storage MQTT daemon
+After=syslog.target network.target
+
+[Service]
+Type=simple
+User=flipdot
+ExecStart=/home/flipdot/iod/drinks-storage-mqtt/drinks-storage-mqtt.py
+
+[Install]
+WantedBy=multi-user.target
