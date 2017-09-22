@@ -5,6 +5,7 @@ After=syslog.target network.target
 [Service]
 Type=simple
 User=flipdot
+WorkingDirectory=/home/flipdot/iod/drinks-storage-mqtt
 ExecStart=/home/flipdot/iod/drinks-storage-mqtt/drinks-storage-mqtt.py
 
 [Install]
