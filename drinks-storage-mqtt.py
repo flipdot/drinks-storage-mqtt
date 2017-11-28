@@ -10,7 +10,6 @@ MQTT_TOPIC_RAW = "sensors/cellar/drinks_scale_measurements_raw"
 MQTT_TOPIC_METRIC = "sensors/cellar/drinks_scale_measurements_metric"
 MQTT_TOPIC_CRATES = "sensors/cellar/drinks_crate_counts"
 MQTT_TOPIC_ERRORS = "errors"
-old_values = {}
 
 
 def on_connect(client, userdata, flags, result):
@@ -41,13 +40,12 @@ def on_message(client, userdata, message):
                            .format(scale_config["scale_name"], diff_kg)
             }
             client.publish(MQTT_TOPIC_ERRORS, json.dumps(error_json))
-        elif old_values.get(scale_config["scale_name"]) != crates_int:
+        else:
             output_json = {
                 "scale_name": scale_config["scale_name"],
                 "crate_count": crates_int,
             }
             client.publish(MQTT_TOPIC_CRATES, json.dumps(output_json))
-            old_values[scale_config["scale_name"]] = crates_int
 
     except KeyError as key:
         error_json = {
