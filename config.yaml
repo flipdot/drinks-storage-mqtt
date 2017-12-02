@@ -7,7 +7,7 @@ scales:
     kilogram: -23350
     crate_weight: 11.27
     tolerance: 0.5
-  0x0049b8e3:
+  0x00499643:
     scale_name: becks
     tare: 8493500
     kilogram: -24100
@@ -19,12 +19,12 @@ scales:
     kilogram: 24150
     crate_weight: 18.98
     tolerance: 0.5
-  #0x00499a78:
-  #  scale_name: fritz_cola
-  #  tare: 8263625
-  #  kilogram:
-  #  crate_weight:
-  #  tolerance: 0.5
+  0x00499a78:
+    scale_name: fritz_cola
+    tare: 8263625
+    kilogram: 25000 # PRELIMINARY
+    crate_weight:
+    tolerance: 0.5
   0x003cd18b:
     scale_name: jacobinus
     tare: 8367250
@@ -37,12 +37,12 @@ scales:
     kilogram: -23900
     crate_weight: 19.77
     tolerance: 0.5
-  #0x003ca857:
-  #  scale_name: koestritzer
-  #  tare: 8982450
-  #  kilogram: 23400
-  #  create_weight:
-  #  tolerance: 0.5
+  0x003ca857:
+    scale_name: koestritzer
+    tare: 8982450
+    kilogram: 23400 # PRELIMINARY
+    create_weight:
+    tolerance: 0.5
   0x003cc863:
     scale_name: mineralwasser
     tare: 8434000
@@ -55,12 +55,12 @@ scales:
     kilogram: -22960
     crate_weight: 12.34
     tolerance: 0.5
-  #0x003cc88a:
-  #  scale_name: mio_cola
-  #  tare:
-  #  kilogram:
-  #  crate_weight:
-  #  tolerance: 0.5
+  0x003cc88a:
+    scale_name: mio_cola
+    tare:
+    kilogram: 25000 # PRELIMINARY
+    crate_weight:
+    tolerance: 0.5
   0x003caaba:
     scale_name: mio_ginger
     tare: 8327100
