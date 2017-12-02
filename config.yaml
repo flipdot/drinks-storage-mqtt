@@ -57,7 +57,7 @@ scales:
     tolerance: 0.5
   0x003cc88a:
     scale_name: mio_cola
-    tare:
+    tare: 8200000 # PRELIMINARY
     kilogram: 25000 # PRELIMINARY
     crate_weight:
     tolerance: 0.5
