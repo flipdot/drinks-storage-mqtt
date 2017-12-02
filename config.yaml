@@ -23,7 +23,7 @@ scales:
     scale_name: fritz_cola
     tare: 8263625
     kilogram: 25000 # PRELIMINARY
-    crate_weight:
+    crate_weight: 20 # PRELIMINARY
     tolerance: 0.5
   0x003cd18b:
     scale_name: jacobinus
@@ -41,7 +41,7 @@ scales:
     scale_name: koestritzer
     tare: 8982450
     kilogram: 23400 # PRELIMINARY
-    create_weight:
+    create_weight: 20 # PRELIMINARY
     tolerance: 0.5
   0x003cc863:
     scale_name: mineralwasser
@@ -59,7 +59,7 @@ scales:
     scale_name: mio_cola
     tare: 8200000 # PRELIMINARY
     kilogram: 25000 # PRELIMINARY
-    crate_weight:
+    crate_weight: 12.25 # PRELIMINARY
     tolerance: 0.5
   0x003caaba:
     scale_name: mio_ginger
