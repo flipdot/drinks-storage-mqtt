@@ -3,7 +3,7 @@ mqtt_host: localhost
 scales:
   0x0049971d:
     scale_name: apfelschorle
-    tare: 8153535
+    tare: 8353535 # ??? ODER KÖSTRITZER?
     kilogram: -23350
     crate_weight: 11.27
     tolerance: 0.5
