@@ -61,7 +61,7 @@ scales:
     kilogram: 25000 # PRELIMINARY
     crate_weight: 12.25 # PRELIMINARY
     tolerance: 0.5
-  0x003caaba:
+  0x00242ca7:
     scale_name: mio_ginger
     tare: 8327100
     kilogram: -23890
