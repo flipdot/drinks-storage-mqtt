@@ -75,7 +75,7 @@ scales:
     tolerance: 0.5
   0x003ca879:
     scale_name: mio_mate
-    tare: 7851775
+    tare: 7855974
     crate_units: -265552
     kilogram: -23000
     tolerance: 0.5
