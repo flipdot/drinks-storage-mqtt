@@ -30,9 +30,10 @@ def on_message(client, userdata, message):
         }
         client.publish(MQTT_TOPIC_METRIC, json.dumps(output_json))
 
-        crates_float = scale_value_kg / scale_config["crate_weight"]
+        crates_float = (msg_content["scale_value"] - scale_config["tare"]) \
+                       / scale_config["crate_units"]
         crates_int = round(crates_float)
-        diff_kg = abs(crates_float - crates_int) * scale_config["crate_weight"]
+        diff_kg = abs(crates_float - crates_int) * scale_config["crate_units"] / scale_config["kilogram"]
         if diff_kg > scale_config["tolerance"]:
             error_json = {
                 "origin": "drinks-storage-mqtt",
