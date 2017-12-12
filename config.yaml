@@ -22,7 +22,7 @@ scales:
   0x00499a78:
     scale_name: fritz_cola
     tare: 8267400
-    kilogram: 25000 # PRELIMINARY
+    kilogram: 24000 # PRELIMINARY
     crate_weight: 20 # PRELIMINARY
     tolerance: 0.5
   0x003cd18b:
@@ -64,7 +64,7 @@ scales:
   0x003cc88a:
     scale_name: mio_cola
     tare: 8402936
-    kilogram: 25000 # PRELIMINARY
+    kilogram: 24000 # PRELIMINARY
     crate_weight: 12.25 # PRELIMINARY
     tolerance: 0.5
   0x003caaba:
