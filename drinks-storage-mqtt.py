@@ -21,8 +21,8 @@ def on_message(client, userdata, message):
         msg_content = yaml.load(message.payload)
 
         scale_config = config["scales"][msg_content["esp_id"]]
-        scale_value_kg = (msg_content["scale_value"] - scale_config["tare"]) \
-                         / scale_config["kilogram"]
+        scale_value_kg = (msg_content["scale_value"] - scale_config["tare_raw"]) \
+                         / scale_config["kilogram_kg"]
 
         output_json = {
             "scale_name": scale_config["scale_name"],
@@ -30,15 +30,18 @@ def on_message(client, userdata, message):
         }
         client.publish(MQTT_TOPIC_METRIC, json.dumps(output_json))
 
-        crates_float = (msg_content["scale_value"] - scale_config["tare"]) \
-                       / scale_config["crate_units"]
+        crates_float = (msg_content["scale_value"] - scale_config["tare_raw"]) \
+                       / scale_config["crate_raw"]
         crates_int = round(crates_float)
-        diff_kg = (crates_float - crates_int) * scale_config["crate_units"] / scale_config["kilogram"]
-        if diff_kg > scale_config["tolerance"]:
+        diff_kg = (crates_float - crates_int
+                   ) * scale_config["crate_raw"] / scale_config["kilogram_kg"]
+        if diff_kg > scale_config["tolerance_kg"]:
             error_json = {
-                "origin": "drinks-storage-mqtt",
-                "message": "{}: Measurement not in range, difference = {:.2} kg"
-                           .format(scale_config["scale_name"], diff_kg)
+                "origin":
+                "drinks-storage-mqtt",
+                "message":
+                "{}: Measurement not in range, difference = {:.2} kg".format(
+                    scale_config["scale_name"], diff_kg)
             }
             client.publish(MQTT_TOPIC_ERRORS, json.dumps(error_json))
         else:
@@ -55,6 +58,7 @@ def on_message(client, userdata, message):
             "msg_content": msg_content,
         }
         client.publish(MQTT_TOPIC_ERRORS, json.dumps(error_json))
+
 
 client = mqtt.Client()
 client.on_connect = on_connect

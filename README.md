@@ -24,3 +24,7 @@ sudo $EDITOR /etc/systemd/system/drinks-storage-mqtt.service
 sudo systemctl start drinks-storage-mqtt
 sudo systemctl enable drinks-storage-mqtt
 ```
+
+## Code style
+
+Please use `yapf` to format the code after editing it.

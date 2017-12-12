@@ -3,85 +3,85 @@ mqtt_host: localhost
 scales:
   0x0049971d:
     scale_name: apfelschorle
-    tare: 8150058
-    crate_units: -263064
-    kilogram: -23350
-    tolerance: 0.5
+    tare_raw: 8150058
+    crate_raw: -263064
+    kilogram_raw: -23350
+    tolerance_kg: 0.5
   0x00499643:
     scale_name: becks
-    tare: 8485765
-    crate_units: -470464
-    kilogram: -24100
-    tolerance: 0.5
+    tare_raw: 8485765
+    crate_raw: -470464
+    kilogram_raw: -24100
+    tolerance_kg: 0.5
   0x0049993d:
     scale_name: eschweger
-    tare: 8321161
-    crate_units: 455523
-    kilogram: 24150
-    tolerance: 0.5
+    tare_raw: 8321161
+    crate_raw: 455523
+    kilogram_raw: 24150
+    tolerance_kg: 0.5
   0x00499a78:
     scale_name: fritz_cola
-    tare: 8267400
-    crate_units: 999999 # PRELIMINARY
-    kilogram: 24000 # PRELIMINARY
-    tolerance: 0.5
+    tare_raw: 8267400
+    crate_raw: 999999 # PRELIMINARY
+    kilogram_raw: 24000 # PRELIMINARY
+    tolerance_kg: 0.5
   0x003cd18b:
     scale_name: jacobinus
-    tare: 8370895
-    crate_units: -454429
-    kilogram: -23550
-    tolerance: 0.5
+    tare_raw: 8370895
+    crate_raw: -454429
+    kilogram_raw: -23550
+    tolerance_kg: 0.5
   0x003cc839:
     scale_name: jever
-    tare: 8646791
-    crate_units: -471293
-    kilogram: -23900
-    tolerance: 0.5
+    tare_raw: 8646791
+    crate_raw: -471293
+    kilogram_raw: -23900
+    tolerance_kg: 0.5
   0x00242ca7:
     scale_name: jever_fun
-    tare: 8020169
-    crate_units: -424272
-    kilogram: 23400 # PRELIMINARY
-    tolerance: 0.5
+    tare_raw: 8020169
+    crate_raw: -424272
+    kilogram_raw: 23400 # PRELIMINARY
+    tolerance_kg: 0.5
   0x003ca857:
     scale_name: koestritzer
-    tare: 8984868
-    crate_units: -999999 # PRELIMINARY
-    kilogram: 23400 # PRELIMINARY
-    tolerance: 0.5
+    tare_raw: 8984868
+    crate_raw: -999999 # PRELIMINARY
+    kilogram_raw: 23400 # PRELIMINARY
+    tolerance_kg: 0.5
   0x003cc863:
     scale_name: mineralwasser
-    tare: 8434903
-    crate_units: -340156
-    kilogram: -23940
-    tolerance: 0.5
+    tare_raw: 8434903
+    crate_raw: -340156
+    kilogram_raw: -23940
+    tolerance_kg: 0.5
   0x00242f6b:
     scale_name: mio_banane
-    tare: 8122878
-    crate_units: -279957
-    kilogram: -22960
-    tolerance: 0.5
+    tare_raw: 8122878
+    crate_raw: -279957
+    kilogram_raw: -22960
+    tolerance_kg: 0.5
   0x003cc88a:
     scale_name: mio_cola
-    tare: 8402936
-    crate_units: -293288
-    kilogram: 24000 # PRELIMINARY
-    tolerance: 0.5
+    tare_raw: 8402936
+    crate_raw: -293288
+    kilogram_raw: 24000 # PRELIMINARY
+    tolerance_kg: 0.5
   0x003caaba:
     scale_name: mio_ginger
-    tare: 8327100
-    crate_units: -297912
-    kilogram: -23890
-    tolerance: 0.5
+    tare_raw: 8327100
+    crate_raw: -297912
+    kilogram_raw: -23890
+    tolerance_kg: 0.5
   0x003ca879:
     scale_name: mio_mate
-    tare: 7855974
-    crate_units: -277336
-    kilogram: -23000
-    tolerance: 0.5
+    tare_raw: 7855974
+    crate_raw: -277336
+    kilogram_raw: -23000
+    tolerance_kg: 0.5
   0x003cc787:
     scale_name: radler
-    tare: 8473790
-    crate_units: -258453
-    kilogram: -22870
-    tolerance: 0.5
+    tare_raw: 8473790
+    crate_raw: -258453
+    kilogram_raw: -22870
+    tolerance_kg: 0.5
