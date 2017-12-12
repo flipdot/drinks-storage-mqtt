@@ -3,65 +3,71 @@ mqtt_host: localhost
 scales:
   0x0049971d:
     scale_name: apfelschorle
-    tare: 8353535 # ??? ODER KÖSTRITZER?
+    tare: 8150058
     kilogram: -23350
     crate_weight: 11.27
     tolerance: 0.5
   0x00499643:
     scale_name: becks
-    tare: 8493500
+    tare: 8485765
     kilogram: -24100
     crate_weight: 19.71
     tolerance: 0.5
   0x0049993d:
     scale_name: eschweger
-    tare: 8322450
+    tare: 8321161
     kilogram: 24150
     crate_weight: 18.98
     tolerance: 0.5
   0x00499a78:
     scale_name: fritz_cola
-    tare: 8263625
+    tare: 8267400
     kilogram: 25000 # PRELIMINARY
     crate_weight: 20 # PRELIMINARY
     tolerance: 0.5
   0x003cd18b:
     scale_name: jacobinus
-    tare: 8367250
+    tare: 8370895
     kilogram: -23550
     crate_weight: 19.29
     tolerance: 0.5
   0x003cc839:
     scale_name: jever
-    tare: 8644150
+    tare: 8646791
     kilogram: -23900
     crate_weight: 19.77
     tolerance: 0.5
+  0x00242ca7:
+    scale_name: jever_fun
+    tare: 8020169
+    kilogram: 23400 # PRELIMINARY
+    crate_weight: 20 # PRELIMINARY
+    tolerance: 0.5
   0x003ca857:
     scale_name: koestritzer
-    tare: 8982450
+    tare: 8984868
     kilogram: 23400 # PRELIMINARY
-    create_weight: 20 # PRELIMINARY
+    crate_weight: 20 # PRELIMINARY
     tolerance: 0.5
   0x003cc863:
     scale_name: mineralwasser
-    tare: 8434000
+    tare: 8434903
     kilogram: -23940
     crate_weight: 14.34
     tolerance: 0.5
   0x00242f6b:
     scale_name: mio_banane
-    tare: 8121180
+    tare: 8122878
     kilogram: -22960
     crate_weight: 12.34
     tolerance: 0.5
   0x003cc88a:
     scale_name: mio_cola
-    tare: 8200000 # PRELIMINARY
+    tare: 8402936
     kilogram: 25000 # PRELIMINARY
     crate_weight: 12.25 # PRELIMINARY
     tolerance: 0.5
-  0x00242ca7:
+  0x003caaba:
     scale_name: mio_ginger
     tare: 8327100
     kilogram: -23890
@@ -69,13 +75,13 @@ scales:
     tolerance: 0.5
   0x003ca879:
     scale_name: mio_mate
-    tare: 7846065
+    tare: 7851775
     kilogram: -23000
     crate_weight: 12.22
     tolerance: 0.5
   0x003cc787:
     scale_name: radler
-    tare: 8474595
+    tare: 8473790
     kilogram: -22870
     crate_weight: 11.23
     tolerance: 0.5
