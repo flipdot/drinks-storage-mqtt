@@ -22,7 +22,7 @@ def on_message(client, userdata, message):
 
         scale_config = config["scales"][msg_content["esp_id"]]
         scale_value_kg = (msg_content["scale_value"] - scale_config["tare_raw"]) \
-                         / scale_config["kilogram_kg"]
+                         / scale_config["kilogram_raw"]
 
         output_json = {
             "scale_name": scale_config["scale_name"],
@@ -34,7 +34,7 @@ def on_message(client, userdata, message):
                        / scale_config["crate_raw"]
         crates_int = round(crates_float)
         diff_kg = (crates_float - crates_int
-                   ) * scale_config["crate_raw"] / scale_config["kilogram_kg"]
+                   ) * scale_config["crate_raw"] / scale_config["kilogram_raw"]
         if diff_kg > scale_config["tolerance_kg"]:
             error_json = {
                 "origin":
