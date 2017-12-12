@@ -51,6 +51,7 @@ def on_message(client, userdata, message):
         error_json = {
             "origin": "drinks-storage-mqtt",
             "message": "unknown scale " + str(key),
+            "msg_content": msg_content,
         }
         client.publish(MQTT_TOPIC_ERRORS, json.dumps(error_json))
 
