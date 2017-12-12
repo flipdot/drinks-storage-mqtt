@@ -4,84 +4,84 @@ scales:
   0x0049971d:
     scale_name: apfelschorle
     tare: 8150058
+    crate_units: -263064
     kilogram: -23350
-    crate_weight: 11.27
     tolerance: 0.5
   0x00499643:
     scale_name: becks
     tare: 8485765
+    crate_units: -470464
     kilogram: -24100
-    crate_weight: 19.71
     tolerance: 0.5
   0x0049993d:
     scale_name: eschweger
     tare: 8321161
+    crate_units: 455523
     kilogram: 24150
-    crate_weight: 18.98
     tolerance: 0.5
   0x00499a78:
     scale_name: fritz_cola
     tare: 8267400
+    crate_units: 999999 # PRELIMINARY
     kilogram: 24000 # PRELIMINARY
-    crate_weight: 20 # PRELIMINARY
     tolerance: 0.5
   0x003cd18b:
     scale_name: jacobinus
     tare: 8370895
+    crate_units: -454429
     kilogram: -23550
-    crate_weight: 19.29
     tolerance: 0.5
   0x003cc839:
     scale_name: jever
     tare: 8646791
+    crate_units: -471293
     kilogram: -23900
-    crate_weight: 19.77
     tolerance: 0.5
   0x00242ca7:
     scale_name: jever_fun
     tare: 8020169
+    crate_units: -424272
     kilogram: 23400 # PRELIMINARY
-    crate_weight: 20 # PRELIMINARY
     tolerance: 0.5
   0x003ca857:
     scale_name: koestritzer
     tare: 8984868
+    crate_units: -999999 # PRELIMINARY
     kilogram: 23400 # PRELIMINARY
-    crate_weight: 20 # PRELIMINARY
     tolerance: 0.5
   0x003cc863:
     scale_name: mineralwasser
     tare: 8434903
+    crate_units: -340156
     kilogram: -23940
-    crate_weight: 14.34
     tolerance: 0.5
   0x00242f6b:
     scale_name: mio_banane
     tare: 8122878
+    crate_units: -279957
     kilogram: -22960
-    crate_weight: 12.34
     tolerance: 0.5
   0x003cc88a:
     scale_name: mio_cola
     tare: 8402936
+    crate_units: -293288
     kilogram: 24000 # PRELIMINARY
-    crate_weight: 12.25 # PRELIMINARY
     tolerance: 0.5
   0x003caaba:
     scale_name: mio_ginger
     tare: 8327100
+    crate_units: -297912
     kilogram: -23890
-    crate_weight: 12.25
     tolerance: 0.5
   0x003ca879:
     scale_name: mio_mate
     tare: 7851775
+    crate_units: -265552
     kilogram: -23000
-    crate_weight: 12.22
     tolerance: 0.5
   0x003cc787:
     scale_name: radler
     tare: 8473790
+    crate_units: -258453
     kilogram: -22870
-    crate_weight: 11.23
     tolerance: 0.5
