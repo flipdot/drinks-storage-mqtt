@@ -4,19 +4,19 @@ scales:
   0x0049971d:
     scale_name: apfelschorle
     tare_raw: 8150058
-    crate_raw: -263064
+    crate_raw: -263220
     kilogram_raw: -23350
     tolerance_kg: 0.5
   0x00499643:
     scale_name: becks
     tare_raw: 8485765
-    crate_raw: -470464
+    crate_raw: -471594
     kilogram_raw: -24100
     tolerance_kg: 0.5
   0x0049993d:
     scale_name: eschweger
     tare_raw: 8321161
-    crate_raw: 455523
+    crate_raw: 457330
     kilogram_raw: 24150
     tolerance_kg: 0.5
   0x00499a78:
@@ -28,19 +28,19 @@ scales:
   0x003cd18b:
     scale_name: jacobinus
     tare_raw: 8370895
-    crate_raw: -454429
+    crate_raw: -450890
     kilogram_raw: -23550
     tolerance_kg: 0.5
   0x003cc839:
     scale_name: jever
     tare_raw: 8646791
-    crate_raw: -471293
+    crate_raw: -468591
     kilogram_raw: -23900
     tolerance_kg: 0.5
   0x00242ca7:
     scale_name: jever_fun
     tare_raw: 8020169
-    crate_raw: -424272
+    crate_raw: -422595
     kilogram_raw: 23400 # PRELIMINARY
     tolerance_kg: 0.5
   0x003ca857:
@@ -52,36 +52,36 @@ scales:
   0x003cc863:
     scale_name: mineralwasser
     tare_raw: 8434903
-    crate_raw: -340156
+    crate_raw: -342771
     kilogram_raw: -23940
     tolerance_kg: 0.5
   0x00242f6b:
     scale_name: mio_banane
     tare_raw: 8122878
-    crate_raw: -279957
+    crate_raw: -285556
     kilogram_raw: -22960
     tolerance_kg: 0.5
   0x003cc88a:
     scale_name: mio_cola
     tare_raw: 8402936
-    crate_raw: -293288
+    crate_raw: -290730
     kilogram_raw: 24000 # PRELIMINARY
     tolerance_kg: 0.5
   0x003caaba:
     scale_name: mio_ginger
     tare_raw: 8327100
-    crate_raw: -297912
+    crate_raw: -291981
     kilogram_raw: -23890
     tolerance_kg: 0.5
   0x003ca879:
     scale_name: mio_mate
     tare_raw: 7855974
-    crate_raw: -277336
+    crate_raw: -277861
     kilogram_raw: -23000
     tolerance_kg: 0.5
   0x003cc787:
     scale_name: radler
     tare_raw: 8473790
-    crate_raw: -258453
+    crate_raw: -255388
     kilogram_raw: -22870
     tolerance_kg: 0.5
