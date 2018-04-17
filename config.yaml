@@ -75,9 +75,9 @@ scales:
     tolerance_kg: 0.5
   0x003ca879:
     scale_name: mio_mate
-    tare_raw: 7855974
-    crate_raw: -277861
-    kilogram_raw: -23000
+    tare_raw: 7822700
+    crate_raw: -278657
+    kilogram_raw: -24400
     tolerance_kg: 0.5
   0x003cc787:
     scale_name: radler
