@@ -9,8 +9,8 @@ scales:
     tolerance_kg: 0.5
   0x00499643:
     scale_name: becks
-    tare_raw: 8485765
-    crate_raw: -471594
+    tare_raw: 8487765
+    crate_raw: -479000
     kilogram_raw: -24100
     tolerance_kg: 0.5
   0x0049993d:
@@ -41,7 +41,7 @@ scales:
     scale_name: jever_fun
     tare_raw: 8020169
     crate_raw: -422595
-    kilogram_raw: 23400 # PRELIMINARY
+    kilogram_raw: -23400 # PRELIMINARY
     tolerance_kg: 0.5
   0x003ca857:
     scale_name: koestritzer
