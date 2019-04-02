@@ -81,7 +81,7 @@ scales:
     tolerance_kg: 0.5
   0x003cc787:
     scale_name: radler
-    tare_raw: 8473790
-    crate_raw: -255388
+    tare_raw: 8471966
+    crate_raw: -259234
     kilogram_raw: -22870
     tolerance_kg: 0.5
