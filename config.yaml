@@ -6,82 +6,82 @@ scales:
     tare_raw: 8150058
     crate_raw: -263220
     kilogram_raw: -23350
-    tolerance_kg: 0.5
+    tolerance_kg: 0.7
   0x00499643:
     scale_name: becks
     tare_raw: 8487765
     crate_raw: -479000
     kilogram_raw: -24100
-    tolerance_kg: 0.5
+    tolerance_kg: 0.7
   0x0049993d:
     scale_name: eschweger
     tare_raw: 8321161
     crate_raw: 457330
     kilogram_raw: 24150
-    tolerance_kg: 0.5
+    tolerance_kg: 0.7
   0x00499a78:
     scale_name: grapefruit_sprudel
     tare_raw: 8297808
     crate_raw: -236364
     kilogram_raw: 24000 # PRELIMINARY
-    tolerance_kg: 0.5
+    tolerance_kg: 0.7
   0x003cd18b:
     scale_name: jacobinus
     tare_raw: 8370895
     crate_raw: -450890
     kilogram_raw: -23550
-    tolerance_kg: 0.5
+    tolerance_kg: 0.7
   0x003cc839:
     scale_name: jever
     tare_raw: 8646791
     crate_raw: -468591
     kilogram_raw: -23900
-    tolerance_kg: 0.5
+    tolerance_kg: 0.7
   0x00242ca7:
     scale_name: jever_fun
     tare_raw: 8031142
     crate_raw: -409922
     kilogram_raw: -23400 # PRELIMINARY
-    tolerance_kg: 0.5
+    tolerance_kg: 0.7
   0x003ca857:
     scale_name: koestritzer
     tare_raw: 8984868
     crate_raw: 427370
     kilogram_raw: 23400 # PRELIMINARY
-    tolerance_kg: 0.5
+    tolerance_kg: 0.7
   0x003cc863:
     scale_name: mineralwasser
     tare_raw: 8434903
     crate_raw: -342771
     kilogram_raw: -23940
-    tolerance_kg: 0.5
+    tolerance_kg: 0.7
   0x00242f6b:
     scale_name: mio_banane
     tare_raw: 8122878
     crate_raw: -285556
     kilogram_raw: -22960
-    tolerance_kg: 0.5
+    tolerance_kg: 0.7
   0x003cc88a:
     scale_name: mio_cola
     tare_raw: 8402936
     crate_raw: -290730
     kilogram_raw: 24000 # PRELIMINARY
-    tolerance_kg: 0.5
+    tolerance_kg: 0.7
   0x003caaba:
     scale_name: mio_ginger
     tare_raw: 8212178
     crate_raw: -297079
     kilogram_raw: -23890
-    tolerance_kg: 0.5
+    tolerance_kg: 0.7
   0x003ca879:
     scale_name: mio_mate
     tare_raw: 7822700
     crate_raw: -278657
     kilogram_raw: -24400
-    tolerance_kg: 0.5
+    tolerance_kg: 0.7
   0x003cc787:
     scale_name: radler
     tare_raw: 8471966
     crate_raw: -259234
     kilogram_raw: -22870
-    tolerance_kg: 0.5
+    tolerance_kg: 0.7
