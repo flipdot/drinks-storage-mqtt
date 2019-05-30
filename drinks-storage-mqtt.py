@@ -23,7 +23,7 @@ def on_message(client, userdata, message):
         scale_config = config["scales"][msg_content["esp_id"]]
         scale_raw_tared = msg_content["scale_value"] - scale_config["tare_raw"]
         scale_value_kg = scale_raw_tared / scale_config["kilogram_raw"]
-        
+
         output_json = {
             "scale_name": scale_config["scale_name"],
             "scale_value_kg": scale_value_kg,
