@@ -39,8 +39,8 @@ scales:
     tolerance_kg: 0.5
   0x00242ca7:
     scale_name: jever_fun
-    tare_raw: 8020169
-    crate_raw: -422595
+    tare_raw: 8031142
+    crate_raw: -409922
     kilogram_raw: -23400 # PRELIMINARY
     tolerance_kg: 0.5
   0x003ca857:
