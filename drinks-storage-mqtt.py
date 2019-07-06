@@ -36,7 +36,7 @@ def on_message(client, userdata, message):
         crates_int = round(crates_float)
         diff_kg = (crates_float - crates_int
                    ) * scale_config["crate_raw"] / scale_config["kilogram_raw"]
-        if diff_kg > scale_config["tolerance_kg"]:
+        if abs(diff_kg) > scale_config["tolerance_kg"]:
             error_json = {
                 "origin":
                 "drinks-storage-mqtt",
