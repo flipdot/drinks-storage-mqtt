@@ -10,13 +10,13 @@ scales:
   0x00499643:
     scale_name: becks
     tare_raw: 8487765
-    crate_raw: -479000
+    crate_raw: -449000
     kilogram_raw: -24100
     tolerance_kg: 0.7
   0x0049993d:
     scale_name: eschweger
     tare_raw: 8321161
-    crate_raw: 457330
+    crate_raw: 450000
     kilogram_raw: 24150
     tolerance_kg: 0.7
   0x00499a78:
@@ -34,7 +34,7 @@ scales:
   0x003cc839:
     scale_name: jever
     tare_raw: 8646791
-    crate_raw: -468591
+    crate_raw: -456000
     kilogram_raw: -23900
     tolerance_kg: 0.7
   0x00242ca7:
@@ -75,8 +75,8 @@ scales:
     tolerance_kg: 0.7
   0x003ca879:
     scale_name: mio_mate
-    tare_raw: 7822700
-    crate_raw: -278657
+    tare_raw: 7852000
+    crate_raw: -189000
     kilogram_raw: -24400
     tolerance_kg: 0.7
   0x003cc787:
