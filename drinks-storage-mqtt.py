@@ -36,10 +36,13 @@ def on_message(client, userdata, message):
         crates_int = round(crates_float)
         diff_kg = (crates_float - crates_int
                    ) * scale_config["crate_raw"] / scale_config["kilogram_raw"]
+        accuracy = 1 - abs(crates_float - crates_int)
         if abs(diff_kg) > scale_config["tolerance_kg"]:
             error_json = {
                 "origin":
                 "drinks-storage-mqtt",
+                "crate_probably": crates_float,
+                "accuracy": accuracy,
                 "message":
                 "{}: Measurement not in range, difference = {:.2} kg".format(
                     scale_config["scale_name"], diff_kg)
@@ -49,6 +52,7 @@ def on_message(client, userdata, message):
             output_json = {
                 "scale_name": scale_config["scale_name"],
                 "crate_count": crates_int,
+                "accuracy": accuracy
             }
             client.publish(MQTT_TOPIC_CRATES, json.dumps(output_json))
 
