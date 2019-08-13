@@ -9,8 +9,8 @@ scales:
     tolerance_kg: 0.7
   0x00499643:
     scale_name: becks
-    tare_raw: 8490449
-    crate_raw: -465809
+    tare_raw: 8489090
+    crate_raw: -463595
     kilogram_raw: -24568
     tolerance_kg: 0.7
   0x0049993d:
