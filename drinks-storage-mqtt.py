@@ -64,10 +64,10 @@ def on_message(client, userdata, message):
         }
         client.publish(MQTT_TOPIC_ERRORS, json.dumps(error_json))
 
+if __name__ == "__main__":
+    client = mqtt.Client()
+    client.on_connect = on_connect
+    client.on_message = on_message
 
-client = mqtt.Client()
-client.on_connect = on_connect
-client.on_message = on_message
-
-client.connect(config["mqtt_host"])
-client.loop_forever()
+    client.connect(config["mqtt_host"])
+    client.loop_forever()
