@@ -176,7 +176,7 @@ def actual_read():
             val = int(input("number please: "))
             read_int_future.set_result(val)
             return
-        except:
+        except ValueError:
             pass
 
 if __name__ == "__main__":
