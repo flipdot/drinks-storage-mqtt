@@ -56,7 +56,7 @@ scales:
     kilogram_raw: -23940
     tolerance_kg: 0.7
   0x00242f6b:
-    scale_name: mio_banane
+    scale_name: mio_guarana
     tare_raw: 8122878
     crate_raw: -285556
     kilogram_raw: -22960
