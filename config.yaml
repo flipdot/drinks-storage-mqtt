@@ -27,14 +27,14 @@ scales:
     tolerance_kg: 0.7
   0x003cd18b:
     scale_name: jacobinus
-    tare_raw: 8370895
-    crate_raw: -450890
+    tare_raw: 8371159
+    crate_raw: -445563
     kilogram_raw: -23550
     tolerance_kg: 0.7
   0x003cc839:
     scale_name: jever
-    tare_raw: 8669991
-    crate_raw: -465830
+    tare_raw: 8669907
+    crate_raw: -464397
     kilogram_raw: -23900
     tolerance_kg: 0.7
   0x00242ca7:
@@ -69,7 +69,7 @@ scales:
     tolerance_kg: 0.7
   0x003caaba:
     scale_name: mio_ginger
-    tare_raw: 8212178
+    tare_raw: 8230268
     crate_raw: -297079
     kilogram_raw: -23890
     tolerance_kg: 0.7
