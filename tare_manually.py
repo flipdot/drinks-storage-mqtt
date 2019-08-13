@@ -2,6 +2,7 @@
 import asyncio
 import json
 import math
+import threading
 
 import paho.mqtt.client as mqtt
 import ruamel.yaml
@@ -73,9 +74,11 @@ future = None
 
 def on_message(client, userdata, message):
     global future
-    if future != None:
-        future.set_result(message)
-        future = None
+    fut = future
+    future = None
+    if fut != None:
+        fut.set_result(message)
+
 
 async def get_value(loop, scale_id):
     while True:
@@ -85,11 +88,12 @@ async def get_value(loop, scale_id):
         await my_future
         msg_content = yaml.load(my_future.result().payload)
         if msg_content.get('esp_id') == scale_id:
+            print(msg_content)
             return msg_content
 
 async def main(loop):
     print("Please select stack:")
-    scale_id = select_entry(config['scales'], lambda stack: stack['scale_name'])
+    scale_id = await select_entry(config['scales'], lambda stack: stack['scale_name'])
 
     stack = config['scales'][scale_id]
     print("selected", stack['scale_name'])
@@ -102,7 +106,7 @@ async def main(loop):
             'abort': 'Exit!'
         }
         print("What do you want to do?")
-        action = select_entry(map, lambda k: k)
+        action = await select_entry(map, lambda k: k)
         if action == 'tare':
             await tare(loop, scale_id, stack)
         elif action == 'value':
@@ -131,7 +135,7 @@ async def value(loop, scale_id, stack):
 
         print("[ 0]: Finish")
         print("[ n]: I have n kisten on the stack")
-        n = read_int()
+        n = await read_int(loop)
         if n <= 0:
             value = int(sum(measurements.values()) / len(measurements))
             print("new crate value:", value, "old value:", stack['crate_raw'],
@@ -148,22 +152,32 @@ async def value(loop, scale_id, stack):
 
 
 
-def select_entry(map, name_func):
+async def select_entry(map, name_func):
     stack_idxs = []
     for idx, scale_id in enumerate(map):
         stack = map[scale_id]
         stack_idxs.append(scale_id)
         print("[{idx: 2d}] {name}".format(idx=idx + 1, name=name_func(stack)))
-    selected = read_int()
+    selected = await read_int(loop)
     return stack_idxs[selected - 1]
 
-def read_int():
+
+async def read_int(loop):
+    global read_int_future
+    read_int_future = loop.create_future()
+    t = threading.Thread(target=actual_read)
+    t.start()
+    await read_int_future
+    return read_int_future.result()
+
+def actual_read():
     while True:
         try:
-            return int(input("number please: "))
+            val = int(input("number please: "))
+            read_int_future.set_result(val)
+            return
         except:
             pass
-
 
 if __name__ == "__main__":
     client = mqtt.Client()
