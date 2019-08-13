@@ -33,10 +33,10 @@ scales:
     tolerance_kg: 0.7
   0x003cc839:
     scale_name: jever
-    tare_raw: 8669907
-    crate_raw: -464397
+    tare_raw: 8669155
+    crate_raw: -466068
     kilogram_raw: -23900
-    tolerance_kg: 0.7
+    tolerance_kg: 2
   0x00242ca7:
     scale_name: jever_fun
     tare_raw: 8028600
