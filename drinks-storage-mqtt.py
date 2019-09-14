@@ -20,18 +20,20 @@ def on_message(client, userdata, message):
     try:
         msg_content = yaml.load(message.payload)
 
+        scale_name = scale_config["scale_name"]
+        scale_value = msg_content["scale_value"]
         scale_config = config["scales"][msg_content["esp_id"]]
-        scale_raw_tared = msg_content["scale_value"] - scale_config["tare_raw"]
+        scale_raw_tared = scale_value - scale_config["tare_raw"]
         scale_value_kg = scale_raw_tared / scale_config["kilogram_raw"]
 
         output_json = {
-            "scale_name": scale_config["scale_name"],
+            "scale_name": scale_name,
             "scale_value_kg": scale_value_kg,
             "scale_raw_tared": scale_raw_tared,
         }
         client.publish(MQTT_TOPIC_METRIC, json.dumps(output_json))
 
-        crates_float = (msg_content["scale_value"] - scale_config["tare_raw"]) \
+        crates_float = (scale_value - scale_config["tare_raw"]) \
                        / scale_config["crate_raw"]
         crates_int = round(crates_float)
         diff_kg = (crates_float - crates_int
@@ -45,12 +47,12 @@ def on_message(client, userdata, message):
                 "accuracy": accuracy,
                 "message":
                 "{}: Measurement not in range, difference = {:.2} kg".format(
-                    scale_config["scale_name"], diff_kg)
+                    scale_name, diff_kg)
             }
             client.publish(MQTT_TOPIC_ERRORS, json.dumps(error_json))
         else:
             output_json = {
-                "scale_name": scale_config["scale_name"],
+                "scale_name": scale_name,
                 "crate_count": crates_int,
                 "accuracy": accuracy
             }
