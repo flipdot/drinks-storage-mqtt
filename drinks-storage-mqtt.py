@@ -4,7 +4,7 @@ import json
 import paho.mqtt.client as mqtt
 import yaml
 
-config = yaml.load(open("config.yaml", "r"))
+config = yaml.safe_load(open("config.yaml", "r"))
 
 MQTT_TOPIC_RAW = "sensors/cellar/drinks_scale_measurements_raw"
 MQTT_TOPIC_METRIC = "sensors/cellar/drinks_scale_measurements_metric"
@@ -18,8 +18,7 @@ def on_connect(client, userdata, flags, result):
 
 def on_message(client, userdata, message):
     try:
-        msg_content = yaml.load(message.payload)
-
+        msg_content = yaml.safe_load(message.payload)
         scale_name = scale_config["scale_name"]
         scale_value = msg_content["scale_value"]
         scale_config = config["scales"][msg_content["esp_id"]]
