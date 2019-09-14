@@ -17,53 +17,62 @@ def on_connect(client, userdata, flags, result):
 
 
 def on_message(client, userdata, message):
+    # Collect variables' values
     try:
         msg_content = yaml.safe_load(message.payload)
-        scale_name = scale_config["scale_name"]
         scale_value = msg_content["scale_value"]
         scale_config = config["scales"][msg_content["esp_id"]]
+        scale_name = scale_config["scale_name"]
+        scale_crate_raw = scale_config["crate_raw"]
         scale_raw_tared = scale_value - scale_config["tare_raw"]
-        scale_value_kg = scale_raw_tared / scale_config["kilogram_raw"]
-
-        output_json = {
-            "scale_name": scale_name,
-            "scale_value_kg": scale_value_kg,
-            "scale_raw_tared": scale_raw_tared,
-        }
-        client.publish(MQTT_TOPIC_METRIC, json.dumps(output_json))
-
-        crates_float = (scale_value - scale_config["tare_raw"]) \
-                       / scale_config["crate_raw"]
-        crates_int = round(crates_float)
-        diff_kg = (crates_float - crates_int
-                   ) * scale_config["crate_raw"] / scale_config["kilogram_raw"]
-        accuracy = 1 - abs(crates_float - crates_int)
-        if abs(diff_kg) > scale_config["tolerance_kg"]:
-            error_json = {
-                "origin":
-                "drinks-storage-mqtt",
-                "crate_probably": crates_float,
-                "accuracy": accuracy,
-                "message":
-                "{}: Measurement not in range, difference = {:.2} kg".format(
-                    scale_name, diff_kg)
-            }
-            client.publish(MQTT_TOPIC_ERRORS, json.dumps(error_json))
-        else:
-            output_json = {
-                "scale_name": scale_name,
-                "crate_count": crates_int,
-                "accuracy": accuracy
-            }
-            client.publish(MQTT_TOPIC_CRATES, json.dumps(output_json))
-
+        scale_kg_raw = scale_config["kilogram_raw"]
+        scale_value_kg = scale_raw_tared / scale_kg_raw
+        scale_tolerance_kg = scale_config["tolerance_kg"]
     except KeyError as key:
         error_json = {
             "origin": "drinks-storage-mqtt",
-            "message": "unknown scale " + str(key),
+            "message": "unknown scale / values missing " + str(key),
             "msg_content": msg_content,
         }
         client.publish(MQTT_TOPIC_ERRORS, json.dumps(error_json))
+        return
+
+    # Publish metric data based on config
+    output_json = {
+        "scale_name": scale_name,
+        "scale_value_kg": scale_value_kg,
+        "scale_raw_tared": scale_raw_tared,
+    }
+    client.publish(MQTT_TOPIC_METRIC, json.dumps(output_json))
+
+    # Compute crate count and tolerance
+    crates_float = (scale_value - scale_raw_tared) \
+                    / scale_crate_raw
+    crates_int = round(crates_float)
+    diff_kg = (crates_float - crates_int
+                ) * scale_crate_raw / scale_kg_raw
+    accuracy = 1 - abs(crates_float - crates_int)
+
+    # Check for deviation of crate count's ideal values in kg
+    if abs(diff_kg) > scale_tolerance_kg:
+        error_json = {
+            "origin": "drinks-storage-mqtt",
+            "crate_probably": crates_float,
+            "accuracy": accuracy,
+            "message":
+            "{}: Measurement not in range, difference = {:.2} kg".format(
+                scale_name, diff_kg)
+        }
+        client.publish(MQTT_TOPIC_ERRORS, json.dumps(error_json))
+        return
+
+    # Everything within limits
+    output_json = {
+        "scale_name": scale_name,
+        "crate_count": crates_int,
+        "accuracy": accuracy
+    }
+    client.publish(MQTT_TOPIC_CRATES, json.dumps(output_json))
 
 if __name__ == "__main__":
     client = mqtt.Client()
