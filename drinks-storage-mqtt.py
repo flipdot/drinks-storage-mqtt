@@ -46,12 +46,20 @@ def on_message(client, userdata, message):
     client.publish(MQTT_TOPIC_METRIC, json.dumps(output_json))
 
     # Compute crate count and tolerance
-    crates_float = (scale_value - scale_raw_tared) \
-                    / scale_crate_raw
+    crates_float = scale_raw_tared / scale_crate_raw
     crates_int = round(crates_float)
-    diff_kg = (crates_float - crates_int
-                ) * scale_crate_raw / scale_kg_raw
+    diff_kg = (crates_float - crates_int) * scale_crate_raw / scale_kg_raw
     accuracy = 1 - abs(crates_float - crates_int)
+
+    # Check for negative crate count
+    if crates_int < 0:
+        error_json = {
+            "origin": "drinks-storage-mqtt",
+            "scale_name": scale_name,
+            "message": f"{scale_name}: Crate count negative: {crates_int}",
+        }
+        client.publish(MQTT_TOPIC_ERRORS, json.dumps(error_json))
+        return
 
     # Check for deviation of crate count's ideal values in kg
     if abs(diff_kg) > scale_tolerance_kg:
