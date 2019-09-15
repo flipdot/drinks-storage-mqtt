@@ -4,12 +4,21 @@ import json
 import paho.mqtt.client as mqtt
 import yaml
 
-config = yaml.safe_load(open("config.yaml", "r"))
-
+CONFIG_FILE = "config.yaml"
 MQTT_TOPIC_RAW = "sensors/cellar/drinks_scale_measurements_raw"
 MQTT_TOPIC_METRIC = "sensors/cellar/drinks_scale_measurements_metric"
 MQTT_TOPIC_CRATES = "sensors/cellar/drinks_crate_counts"
 MQTT_TOPIC_ERRORS = "errors"
+
+config = yaml.safe_load(open(CONFIG_FILE, "r"))
+cache = {}
+
+try:
+    AUTO_TARE = True
+    AT_MAX_DIFF_RAW = config["auto_tare"]["max_diff_raw"]
+    AT_REWRITE_CFG = config["auto_tare"]["rewrite_cfg"]
+except:
+    AUTO_TARE = False
 
 
 def on_connect(client, userdata, flags, result):
@@ -60,6 +69,29 @@ def on_message(client, userdata, message):
         }
         client.publish(MQTT_TOPIC_ERRORS, json.dumps(error_json))
         return
+
+    # Auto tare if enabled and scale value diff to cache within bounds
+    if AUTO_TARE:
+        # Compute difference to last cached value
+        try:
+            cache_value = cache[scale_name]["scale_value"]
+            scale_diff = scale_value - cache_value
+        except:
+            cache_value = scale_value
+            scale_diff = 0
+        # If difference below threshold, retare
+        if abs(scale_diff) < AT_MAX_DIFF_RAW:
+            # Update cache
+            cache[scale_name] = {
+                "scale_value": scale_value,
+            }
+            # Update scale's tare in config
+            config["scales"][msg_content["esp_id"]]["tare_raw"] += \
+                scale_diff
+            # Rewrite config on change
+            if AT_REWRITE_CFG and abs(scale_diff) > 0:
+                with open(CONFIG_FILE, 'w') as yaml_file:
+                    yaml.dump(config, yaml_file, default_flow_style=False)
 
     # Check for deviation of crate count's ideal values in kg
     if abs(diff_kg) > scale_tolerance_kg:

@@ -1,5 +1,9 @@
 mqtt_host: localhost
 
+auto_tare:
+    max_diff_raw: 1000 # Maximum allowed sensor noise/drift in raw units
+    rewrite_cfg: False # If turned on, cached values will be rewritten to config
+
 scales:
   0x0049971d:
     scale_name: apfelschorle
