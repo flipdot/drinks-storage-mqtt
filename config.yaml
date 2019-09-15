@@ -1,20 +1,20 @@
 mqtt_host: localhost
 
 auto_tare:
-    max_diff_raw: 1000 # Maximum allowed sensor noise/drift in raw units
-    rewrite_cfg: False # If turned on, cached values will be rewritten to config
+  max_diff_raw: 1000   # Maximum allowed sensor noise/drift in raw units
+  rewrite_cfg: false   # If turned on, cached values will be rewritten to config
 
 scales:
   0x0049971d:
     scale_name: apfelschorle
-    tare_raw: 8150058
-    crate_raw: -263220
+    tare_raw: 8149431
+    crate_raw: -261813
     kilogram_raw: -23350
     tolerance_kg: 0.7
   0x00499643:
     scale_name: becks
-    tare_raw: 8487984
-    crate_raw: -457799
+    tare_raw: 8488644
+    crate_raw: -462245
     kilogram_raw: -24568
     tolerance_kg: 0.7
   0x0049993d:
@@ -73,14 +73,14 @@ scales:
     tolerance_kg: 0.7
   0x003caaba:
     scale_name: mio_ginger
-    tare_raw: 8230268
-    crate_raw: -297079
+    tare_raw: 5875320
+    crate_raw: 13
     kilogram_raw: -23890
     tolerance_kg: 0.7
   0x003ca879:
     scale_name: mio_mate
-    tare_raw: 7853758
-    crate_raw: -280028
+    tare_raw: 7852973
+    crate_raw: -276490
     kilogram_raw: -24400
     tolerance_kg: 0.7
   0x003cc787:
