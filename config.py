@@ -16,6 +16,13 @@ class ScaleConfig:
     kilogram_raw: int
     tolerance_kg: float
 
+    def raw_tared(self, raw_value: int):
+        return raw_value - self.tare_raw
+
+    def calc_kg(self, raw_value: int):
+        scale_raw_tared = raw_value - self.tare_raw
+        return scale_raw_tared / self.kilogram_raw
+
 
 class Config:
     mqtt_host: str
@@ -28,14 +35,17 @@ class Config:
 
 config: Config = None
 
+
 def reload_config():
     global config
     with open(CONFIG_FILE, "r") as f:
         config = Config(yaml.safe_load(f))
 
+
 def save_config():
     with open(CONFIG_FILE, 'w') as yaml_file:
         yaml.dump(config, yaml_file, default_flow_style=False)
+
 
 if config == None:
     reload_config()
