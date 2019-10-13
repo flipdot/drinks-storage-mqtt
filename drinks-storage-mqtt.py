@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
 import json
+import logging
+logging.basicConfig(level=logging.DEBUG)
 
 import paho.mqtt.client as mqtt
 import yaml
 from config import config, save_config, ScaleConfig
+
 
 MQTT_TOPIC_RAW = "sensors/cellar/drinks_scale_measurements_raw"
 MQTT_TOPIC_METRIC = "sensors/cellar/drinks_scale_measurements_metric"
@@ -15,6 +18,11 @@ cache = {}
 
 def on_connect(client, userdata, flags, result):
     client.subscribe(MQTT_TOPIC_RAW)
+
+
+def send_mqtt(topic, message):
+    logging.debug(f"Sending MQTT msg: {topic} - {message}")
+    client.publish(topic, message)
 
 
 def on_message(client, userdata, message):
@@ -29,7 +37,7 @@ def on_message(client, userdata, message):
             "message": "unknown scale / values missing " + str(key),
             "msg_content": msg_content,
         }
-        client.publish(MQTT_TOPIC_ERRORS, json.dumps(error_json))
+        send_mqtt(MQTT_TOPIC_ERRORS, json.dumps(error_json))
         return
 
     scale_raw_tared = scale_config.tare_raw(scale_value)
@@ -37,10 +45,10 @@ def on_message(client, userdata, message):
     # Publish metric data based on config
     output_json = {
         "scale_name": scale_config.scale_name,
-        "scale_value_kg": scale_config.calc_kg(scale_value),
+        "scale_value_kg": scale_config.to_kg(scale_value),
         "scale_raw_tared": scale_raw_tared,
     }
-    client.publish(MQTT_TOPIC_METRIC, json.dumps(output_json))
+    send_mqtt(MQTT_TOPIC_METRIC, json.dumps(output_json))
 
     crates_float = scale_config.to_crates(scale_value)
     crates_int = round(crates_float)
@@ -57,7 +65,7 @@ def on_message(client, userdata, message):
             "message":
             f"{scale_config.scale_name}: Crate count negative: {crates_int}",
         }
-        client.publish(MQTT_TOPIC_ERRORS, json.dumps(error_json))
+        send_mqtt(MQTT_TOPIC_ERRORS, json.dumps(error_json))
         return
 
     # Auto tare if enabled and scale value diff to cache within bounds
@@ -96,7 +104,7 @@ def on_message(client, userdata, message):
             "{}: Measurement not in range, difference = {:.2} kg".format(
                 scale_config.scale_name, diff_kg)
         }
-        client.publish(MQTT_TOPIC_ERRORS, json.dumps(error_json))
+        send_mqtt(MQTT_TOPIC_ERRORS, json.dumps(error_json))
         return
 
     # Everything within limits
@@ -105,7 +113,7 @@ def on_message(client, userdata, message):
         "crate_count": crates_int,
         "accuracy": accuracy
     }
-    client.publish(MQTT_TOPIC_CRATES, json.dumps(output_json))
+    send_mqtt(MQTT_TOPIC_CRATES, json.dumps(output_json))
 
 
 if __name__ == "__main__":
