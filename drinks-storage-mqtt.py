@@ -40,7 +40,7 @@ def on_message(client, userdata, message):
         send_mqtt(MQTT_TOPIC_ERRORS, json.dumps(error_json))
         return
 
-    scale_raw_tared = scale_config.tare_raw(scale_value)
+    scale_raw_tared = scale_config.raw_tared(scale_value)
 
     # Publish metric data based on config
     output_json = {
@@ -78,18 +78,21 @@ def on_message(client, userdata, message):
             cache_value = scale_value
             scale_diff = 0
 
+        cache[scale_config.scale_name] = {
+            "scale_value": scale_value,
+        }
+
         # If difference below threshold, retare
-        if scale_diff != 0 and abs(scale_diff) < config.auto_tare.max_diff_raw:
-            # Update cache
-            cache[scale_config.scale_name] = {
-                "scale_value": scale_value,
-            }
+        if abs(scale_diff) < config.auto_tare.max_diff_raw:
             # Update scale's tare in config
-            config.scales[msg_content["esp_id"]]["tare_raw"] += scale_diff
+            scale_config.tare_raw -= scale_config.from_crates(
+                round(crates_float)) - scale_config.from_crates(crates_float)
 
             # Rewrite config on change
             if config.auto_tare.rewrite_cfg:
                 save_config()
+        else:
+            logging.debug(f"Too much drift on scale {scale_config.scale_name}: {scale_diff}")
 
     # Check for deviation of crate count's ideal values in kg
     if abs(diff_kg) > scale_config.tolerance_kg:
