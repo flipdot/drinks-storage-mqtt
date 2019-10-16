@@ -13,8 +13,6 @@ MQTT_TOPIC_METRIC = "sensors/cellar/drinks_scale_measurements_metric"
 MQTT_TOPIC_CRATES = "sensors/cellar/drinks_crate_counts"
 MQTT_TOPIC_ERRORS = "errors"
 
-cache = {}
-
 
 def on_connect(client, userdata, flags, result):
     client.subscribe(MQTT_TOPIC_RAW)
@@ -69,32 +67,6 @@ def on_message(client, userdata, message):
         send_mqtt(MQTT_TOPIC_ERRORS, json.dumps(error_json))
         return
 
-    # Auto tare if enabled and scale value diff to cache within bounds
-    if config.auto_tare != None:
-        # Compute difference to last cached value
-        try:
-            cache_value = cache[scale_config.scale_name]["scale_value"]
-            scale_diff = scale_value - cache_value
-        except:
-            cache_value = scale_value
-            scale_diff = 0
-
-        cache[scale_config.scale_name] = {
-            "scale_value": scale_value,
-        }
-
-        # If difference below threshold, retare
-        if abs(scale_diff) < config.auto_tare.max_diff_raw:
-            # Update scale's tare in config
-            scale_config.tare_raw -= scale_config.from_crates(
-                round(crates_float)) - scale_config.from_crates(crates_float)
-
-            # Rewrite config on change
-            if config.auto_tare.rewrite_cfg:
-                save_config()
-        else:
-            logging.debug(f"Too much drift on scale {scale_config.scale_name}: {scale_diff}")
-
     # Check for deviation of crate count's ideal values in kg
     if abs(diff) > scale_config.tolerance:
         error_json = {
@@ -110,6 +82,16 @@ def on_message(client, userdata, message):
         }
         send_mqtt(MQTT_TOPIC_ERRORS, json.dumps(error_json))
         return
+
+    # Auto tare if enabled
+    if config.auto_tare != None:
+        # Update scale's tare in config
+        scale_config.tare_raw -= (scale_config.from_crates(
+            round(crates_float)) - scale_config.from_crates(crates_float)) / 2.0
+
+        # Rewrite config on change
+        if config.auto_tare.rewrite_cfg:
+            save_config()
 
     # Everything within limits
     output_json = {
