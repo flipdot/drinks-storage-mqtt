@@ -50,15 +50,15 @@ class ScaleConfig:
             crate_raw=verify(raw_dict, "crate_raw", of_type=int),
             tare_raw=verify(raw_dict, "tare_raw", of_type=int),
             kilogram_raw=verify(raw_dict, "kilogram_raw", of_type=int),
-            tolerance_kg=verify(raw_dict, "tolerance_kg", of_type=float),
+            tolerance=verify(raw_dict, "tolerance", of_type=float),
         )
 
-    def __init__(self, scale_name: str, crate_raw: int, tare_raw: int, kilogram_raw: int, tolerance_kg: float):
+    def __init__(self, scale_name: str, crate_raw: int, tare_raw: int, kilogram_raw: int, tolerance: float):
         self.scale_name = scale_name
         self.crate_raw = crate_raw
         self.tare_raw = tare_raw
         self.kilogram_raw = kilogram_raw
-        self.tolerance_kg = tolerance_kg
+        self.tolerance = tolerance
 
     def raw_tared(self, raw_value: int):
         return raw_value - self.tare_raw
@@ -79,10 +79,10 @@ class ScaleConfig:
         crates_float = self.to_crates(raw_value)
         crates_int = round(crates_float)
 
-        diff_kg = (crates_float - crates_int) * self.crate_raw / self.kilogram_raw
+        diff = (crates_float - crates_int)
 
-        if abs(diff_kg) > self.tolerance_kg:
-            raise ValueError(f"Crate weight out of tolerance. difference: {diff_kg}kg")
+        if abs(diff) > self.tolerance:
+            raise ValueError(f"Crate weight out of tolerance. difference: {diff} crates")
 
         return crates_int
 

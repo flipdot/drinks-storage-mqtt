@@ -52,8 +52,9 @@ def on_message(client, userdata, message):
 
     crates_float = scale_config.to_crates(scale_value)
     crates_int = round(crates_float)
-    diff_kg = (crates_float - crates_int) * scale_config.crate_raw / scale_config.kilogram_raw
-    accuracy = 1 - abs(crates_float - crates_int)
+
+    diff = crates_float - crates_int
+    accuracy = 1 - abs(diff)
 
     # Check for negative crate count
     if crates_int < 0:
@@ -95,7 +96,7 @@ def on_message(client, userdata, message):
             logging.debug(f"Too much drift on scale {scale_config.scale_name}: {scale_diff}")
 
     # Check for deviation of crate count's ideal values in kg
-    if abs(diff_kg) > scale_config.tolerance_kg:
+    if abs(diff) > scale_config.tolerance:
         error_json = {
             "origin":
             "drinks-storage-mqtt",
@@ -104,8 +105,8 @@ def on_message(client, userdata, message):
             "accuracy":
             accuracy,
             "message":
-            "{}: Measurement not in range, difference = {:.2} kg".format(
-                scale_config.scale_name, diff_kg)
+            "{}: Measurement not in range, difference = {:.2} crates".format(
+                scale_config.scale_name, diff)
         }
         send_mqtt(MQTT_TOPIC_ERRORS, json.dumps(error_json))
         return

@@ -17,7 +17,7 @@ scale_config = ScaleConfig(
     tare_raw=7820000,
     crate_raw=-276490,
     kilogram_raw=-24400,
-    tolerance_kg=1.7,
+    tolerance=0.04,
 )
 
 fig, (ax1, ax2) = plt.subplots(2, 1)
@@ -83,19 +83,11 @@ vals = list(map(mapCalcCrates, values))
 
 ax3.plot(times, list(map(lambda val: val[0], vals)), marker='.', label="Raw")
 ax3.plot(times, list(map(lambda val: val[1], vals)), marker='.', label="Smart")
-ax3.fill_between(
-    times,
-    list(
-        map(
-            lambda val: val[0] + scale_config.relative_to_crates(
-                config.auto_tare.max_diff_raw), vals)),
-    list(
-        map(
-            lambda val: val[0] - scale_config.relative_to_crates(
-                config.auto_tare.max_diff_raw), vals)),
+ax3.fill_between(times,
+                 list(map(lambda val: round(val[0]) + scale_config.tolerance, vals)),
+                 list(map(lambda val: round(val[0]) - scale_config.tolerance, vals)),
     color='g',
-    alpha=0.2
-)
+                 alpha=0.2)
 ax3.legend()
 
 fig.tight_layout()

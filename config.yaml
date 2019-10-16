@@ -10,82 +10,82 @@ scales:
     kilogram_raw: -35100
     scale_name: jever_fun
     tare_raw: 8028600
-    tolerance_kg: 0.7
+    tolerance: 0.04
   2371435:
     crate_raw: -285556
     kilogram_raw: -22960
     scale_name: mio_guarana
     tare_raw: 8122878
-    tolerance_kg: 0.7
+    tolerance: 0.07
   3975255:
     crate_raw: 427370
     kilogram_raw: 23400
     scale_name: koestritzer
     tare_raw: 8984868
-    tolerance_kg: 0.7
+    tolerance: 0.04
   3975289:
     crate_raw: -276490
     kilogram_raw: -24400
     scale_name: mio_mate
     tare_raw: 7852973
-    tolerance_kg: 0.7
+    tolerance: 0.07
   3975866:
     crate_raw: -292530
     kilogram_raw: -23890
     scale_name: mio_ginger
     tare_raw: 8208405.0
-    tolerance_kg: 0.7
+    tolerance: 0.07
   3983239:
     crate_raw: -259234
     kilogram_raw: -22870
     scale_name: radler
     tare_raw: 8471966
-    tolerance_kg: 0.7
+    tolerance: 0.04
   3983417:
     crate_raw: -466068
     kilogram_raw: -23900
     scale_name: jever
     tare_raw: 8669155
-    tolerance_kg: 2.0
+    tolerance: 0.04
   3983459:
     crate_raw: -342771
     kilogram_raw: -23940
     scale_name: mineralwasser
     tare_raw: 8434903
-    tolerance_kg: 0.7
+    tolerance: 0.07
   3983498:
     crate_raw: -290730
     kilogram_raw: 24000
     scale_name: mio_cola
     tare_raw: 8404683.0
-    tolerance_kg: 0.7
+    tolerance: 0.07
   3985803:
     crate_raw: -445563
     kilogram_raw: -23550
     scale_name: jacobinus
     tare_raw: 8371159
-    tolerance_kg: 0.7
+    tolerance: 0.04
   4822595:
     crate_raw: -462245
     kilogram_raw: -24568
     scale_name: becks
     tare_raw: 8488644
-    tolerance_kg: 0.7
+    tolerance: 0.04
   4822813:
     crate_raw: -261813
     kilogram_raw: -23350
     scale_name: apfelschorle
     tare_raw: 8149431
-    tolerance_kg: 0.7
+    tolerance: 0.07
   4823357:
     crate_raw: 452259
     kilogram_raw: 24150
     scale_name: eschweger
     tare_raw: 8317825
-    tolerance_kg: 0.7
+    tolerance: 0.04
   4823672:
     crate_raw: -236364
     kilogram_raw: 24000
     scale_name: grapefruit_sprudel
     tare_raw: 8297808
-    tolerance_kg: 0.7
+    tolerance: 0.1
