@@ -5,9 +5,10 @@ import matplotlib.pyplot as plt
 import numpy as np
 import csv
 from datetime import datetime
+from functools import reduce
 
-from .scale_calc import handle_scale_value
-from .config import ScaleConfig
+from drinks_storage.scale_calc import handle_scale_value
+from drinks_storage.config import ScaleConfig
 
 
 # Calculate stuff
@@ -33,13 +34,18 @@ vals = list(map(mapCalcCrates, values))
 
 # Plot stuff
 
-fig, (ax1) = plt.subplots(1, 1)
+fig = plt.figure()
+
+ax1 = fig.add_subplot(211)
 ax1.set_title('Raw')
 ax1.plot(times, values, marker='.')
-ax1.set_yticks(np.arange(6000000, 7000000, 50000))
 
-fig2, (ax2) = plt.subplots(1, 1)
+ax2 = fig.add_subplot(212, sharex=ax1)
 ax2.set_title('Crates')
+
+diff_sum = reduce(lambda asd, val: asd + abs(val[0] - val[1]), vals, 0)
+print("Summarized fault:", diff_sum)
+
 ax2.plot(times, list(map(lambda val: val[0], vals)), marker='.', label="Raw")
 ax2.plot(times, list(map(lambda val: val[1], vals)), marker='.', label="Smart")
 ax2.fill_between(times,
@@ -49,6 +55,7 @@ ax2.fill_between(times,
                  alpha=0.2)
 ax2.legend()
 
+fig.sharex = True
+
 fig.tight_layout()
-fig2.tight_layout()
 plt.show()
