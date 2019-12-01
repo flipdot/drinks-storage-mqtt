@@ -20,6 +20,8 @@ def handle_scale_value(scale_config, scale_value, auto_tare=False):
     diff = crates_float - crates_int
     accuracy = 1 - abs(diff)
 
+    auto_tared = False
+
     # Check for negative crate count
     if crates_int < 0:
         return (ERROR_COUNT_NEGATIVE, {
@@ -27,6 +29,7 @@ def handle_scale_value(scale_config, scale_value, auto_tare=False):
             "crate_count_float": crates_float,
             "accuracy": accuracy,
             "diff": diff,
+            "auto_tared": auto_tared,
         })
 
     # Check for deviation of crate count's ideal values in kg
@@ -36,9 +39,8 @@ def handle_scale_value(scale_config, scale_value, auto_tare=False):
             "crate_count_float": crates_float,
             "accuracy": accuracy,
             "diff": diff,
+            "auto_tared": auto_tared
         })
-
-    auto_tared = False
 
     # Auto tare if enabled
     if auto_tare:
@@ -55,5 +57,5 @@ def handle_scale_value(scale_config, scale_value, auto_tare=False):
         "crate_count_float": crates_float,
         "accuracy": accuracy,
         "diff": diff,
-        "auto_tared": auto_tared
+        "auto_tared": auto_tared,
     })
