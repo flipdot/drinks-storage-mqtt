@@ -133,12 +133,16 @@ class YamlConfig:
         Save config to file in atomic manner.
         """
 
+        log.debug("Saving file...")
+
         (tmp_fd, tmp_path) = tempfile.mkstemp()
         with open(tmp_fd, "w") as tmp_file:
             yaml.dump(self.config.to_dict(self.raw_config), tmp_file)
 
         os.rename(tmp_file, path)
         os.remove(tmp_path)
+
+        log.debug("File saved.")
 
 config: YamlConfig = None
 
