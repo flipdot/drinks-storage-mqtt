@@ -75,6 +75,10 @@ def on_message(client, userdata, message):
                 "diff": result["diff"],
             }))
 
+        # Rewrite config on auto tare
+        if config.config.auto_tare.rewrite_cfg and result["auto_tared"]:
+            save_config()
+
 
 def main():
     global client

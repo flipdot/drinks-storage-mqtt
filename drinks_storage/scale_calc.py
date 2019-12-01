@@ -38,6 +38,8 @@ def handle_scale_value(scale_config, scale_value, auto_tare=False):
             "diff": diff,
         })
 
+    auto_tared = False
+
     # Auto tare if enabled
     if auto_tare:
         # Update scale's tare in config
@@ -45,9 +47,7 @@ def handle_scale_value(scale_config, scale_value, auto_tare=False):
             from_crates(scale_config, round(crates_float)) -
             from_crates(scale_config, crates_float)) / 2.0
 
-        # # Rewrite config on change
-        # if config.auto_tare.rewrite_cfg:
-        #     save_config()
+        auto_tared = True
 
     # Everything within limits
     return (ERROR_NONE, {
@@ -55,4 +55,5 @@ def handle_scale_value(scale_config, scale_value, auto_tare=False):
         "crate_count_float": crates_float,
         "accuracy": accuracy,
         "diff": diff,
+        "auto_tared": auto_tared
     })
