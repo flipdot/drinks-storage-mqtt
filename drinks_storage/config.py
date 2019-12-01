@@ -1,6 +1,8 @@
 from typing import Mapping, MutableMapping, Sequence, Iterable, List, Set, Dict
 import ruamel.yaml
 import logging
+import tempfile
+import os
 
 yaml = ruamel.yaml.YAML()
 log = logging.getLogger(__name__)
@@ -127,9 +129,16 @@ class YamlConfig:
             return YamlConfig(raw_config=raw_config, config=config)
 
     def save(self, path):
-        with open(path, "w") as yaml_file:
-            yaml.dump(self.config.to_dict(self.raw_config), yaml_file)
+        """
+        Save config to file in atomic maner.
+        """
 
+        (tmp_fd, tmp_path) = tempfile.mkstemp()
+        with open(tmp_fd, "w") as tmp_file:
+            yaml.dump(self.config.to_dict(self.raw_config), tmp_file)
+
+        os.rename(tmp_file, path)
+        os.remove(tmp_path)
 
 config: YamlConfig = None
 
