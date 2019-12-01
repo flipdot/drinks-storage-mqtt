@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import json
 import logging
-logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(level=logging.INFO)
 
 import paho.mqtt.client as mqtt
 import yaml
@@ -14,6 +14,7 @@ MQTT_TOPIC_CRATES = "sensors/cellar/drinks_crate_counts"
 MQTT_TOPIC_ERRORS = "errors"
 
 client = None
+
 
 def on_connect(client, userdata, flags, result):
     client.subscribe(MQTT_TOPIC_RAW)
@@ -36,6 +37,7 @@ ERROR_MESSAGES = {
 
 
 def on_message(client, userdata, message):
+    logging.debug("Received message")
     # Collect variables' values
     try:
         msg_content = yaml.safe_load(message.payload)
@@ -73,6 +75,7 @@ def on_message(client, userdata, message):
                 "diff": result["diff"],
             }))
 
+
 def main():
     global client
     client = mqtt.Client()
@@ -80,4 +83,6 @@ def main():
     client.on_message = on_message
 
     client.connect(config.config.mqtt_host)
+
+    logging.info("Started")
     client.loop_forever()
