@@ -40,7 +40,7 @@ def on_message(client, userdata, message):
     try:
         msg_content = yaml.safe_load(message.payload)
         scale_value = msg_content["scale_value"]
-        scale_config = config.scales[msg_content["esp_id"]]
+        scale_config = config.config.scales[msg_content["esp_id"]]
     except KeyError as key:
         error_json = {
             "origin": "drinks-storage-mqtt",
@@ -79,5 +79,5 @@ def main():
     client.on_connect = on_connect
     client.on_message = on_message
 
-    client.connect(config.mqtt_host)
+    client.connect(config.config.mqtt_host)
     client.loop_forever()
