@@ -28,7 +28,7 @@ scales:
   3975866:
     crate_raw: -292530
     scale_name: mio_ginger
-    tare_raw: 8208405.0
+    tare_raw: 8208405
     tolerance: 0.07
   3983239:
     crate_raw: -259234
@@ -48,7 +48,7 @@ scales:
   3983498:
     crate_raw: -290730
     scale_name: mio_cola
-    tare_raw: 8404683.0
+    tare_raw: 8404683
     tolerance: 0.07
   3985803:
     crate_raw: -445563
