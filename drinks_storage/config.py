@@ -130,7 +130,7 @@ class YamlConfig:
 
     def save(self, path):
         """
-        Save config to file in atomic maner.
+        Save config to file in atomic manner.
         """
 
         (tmp_fd, tmp_path) = tempfile.mkstemp()
