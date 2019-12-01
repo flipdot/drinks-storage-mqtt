@@ -69,8 +69,8 @@ def on_message(client, userdata, message):
             MQTT_TOPIC_CRATES,
             json.dumps({
                 "scale_name": scale_config.scale_name,
-                "crate_count": result["crates_int"],
-                "crate_count_float": result["crates_float"],
+                "crate_count": result["crate_count"],
+                "crate_count_float": result["crate_count_float"],
                 "accuracy": result["accuracy"],
                 "diff": result["diff"],
             }))
