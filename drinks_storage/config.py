@@ -135,7 +135,7 @@ class YamlConfig:
 
         log.debug("Saving file...")
 
-        (tmp_fd, tmp_path) = tempfile.mkstemp()
+        (tmp_fd, tmp_path) = tempfile.mkstemp(text=True)
         with open(tmp_fd, "w") as tmp_file:
             yaml.dump(self.config.to_dict(self.raw_config), tmp_file)
 
