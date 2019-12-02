@@ -139,7 +139,7 @@ class YamlConfig:
         with open(tmp_fd, "w") as tmp_file:
             yaml.dump(self.config.to_dict(self.raw_config), tmp_file)
 
-        os.remove(tmp_path)
+        os.rename(tmp_path, path)
 
         log.debug("File saved.")
 
